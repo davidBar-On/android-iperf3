@@ -88,3 +88,24 @@ RUN ndk-build clean
 RUN ndk-build NDK_APPLICATION_MK=/tmp/jni/Application.mk
 
 RUN tree /tmp/libs
+
+############
+# iPerf 3.15
+############
+
+RUN cd /tmp && \
+    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.15.tar.gz && \
+    tar -zxvf iperf-3.15.tar.gz && \
+    rm -f iperf-3.15.tar.gz
+
+COPY /iperf-3.15/* /tmp/iperf-3.15/
+RUN cd /tmp/iperf-3.15 && \
+    ./configure
+
+# Compile
+
+RUN ndk-build clean
+
+RUN ndk-build NDK_APPLICATION_MK=/tmp/jni/Application.mk
+
+RUN tree /tmp/libs
