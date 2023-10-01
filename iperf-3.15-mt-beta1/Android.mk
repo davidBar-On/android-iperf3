@@ -1,6 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
-LOCAL_MODULE := iperf3.13-mt-beta3
+LOCAL_MODULE := iperf3.15-mt-beta1
 LOCAL_MODULE_TAGS := dev
 LOCAL_CFLAGS := -DHAVE_CONFIG_H -UAF_INET6 -w -Wno-error=format-security
 LOCAL_LDFLAGS := -fPIE -pie

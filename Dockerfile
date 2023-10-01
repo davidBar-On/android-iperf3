@@ -1,9 +1,38 @@
 FROM ubuntu:22.04
 LABEL maintainer="david.cdb004@gmail.com"
 
+RUN echo 'Acquire::Retries "9";' > /etc/apt/apt.conf.d/80-retries
+RUN ls -l /etc/apt/apt.conf.d
+
+RUN env
+RUN echo $http_proxy
+RUN echo $HTTP_PROXY
+RUN cat /etc/hosts
+RUN cat /etc/resolv.conf
+#RUN update-alternatives --config java
+#RUN KUKU
+
+# In case previous build failed
+RUN apt-get clean
+RUN    rm -rf /var/lib/apt/lists/*
+
 RUN apt-get -y update -qq
 RUN    apt-get -y upgrade -qq
-RUN    apt-get -y install -qq make bash git unzip wget curl openjdk-17-jdk build-essential autoconf nano tree
+#RUN    apt-get -y install -q make bash git unzip wget curl openjdk-17-jdk build-essential autoconf nano tree
+RUN    apt-get -y update && apt-get -y install -q make
+RUN    apt-get -y update && apt-get -y install -q bash
+RUN    apt-get -y update && apt-get -y install -q git
+RUN    apt-get -y update && apt-get -y install -q unzip
+RUN    apt-get -y update && apt-get -y install -q wget
+RUN    apt-get -y update && apt-get -y install -q curl
+RUN    apt-get -y update && apt-get -y install -q build-essential
+RUN    apt-get -y update && apt-get -y install -q autoconf
+RUN    apt-get -y update && apt-get -y install -q nano
+RUN    apt-get -y update && apt-get -y install -q tree
+RUN    apt-get -y update && apt-get -y install -q openjdk-17-jdk
+#RUN    ls -l /var/cache/apt/archives
+#RUN    apt-get -y update && apt-get -y install --download-only -q openjdk-17-jdk
+#RUN    cd /var/cache/apt/archives && ls -l && dpkg -i *
 RUN    apt-get clean
 RUN    rm -rf /var/lib/apt/lists/*
 
@@ -48,25 +77,25 @@ COPY /jni/Android.mk /tmp/jni
 COPY /jni/Application.mk /tmp/jni
 
 #####################
-# iPerf 3.13-mt-beta3
+# iPerf 3.15-mt-beta1
 #####################
 
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.13-mt-beta3.tar.gz && \
-    tar -zxvf iperf-3.13-mt-beta3.tar.gz && \
-    rm -f iperf-3.13-mt-beta3.tar.gz
+#RUN cd /tmp && \
+#    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.15-mt-beta1.tar.gz && \
+#    tar -zxvf iperf-3.15-mt-beta1.tar.gz && \
+#    rm -f iperf-3.15-mt-beta1.tar.gz
 
-COPY /iperf-3.13-mt-beta3/* /tmp/iperf-3.13-mt-beta3/
+#COPY /iperf-3.15-mt-beta1/* /tmp/iperf-3.15-mt-beta1/
 
 # Workaround for pthread_cancel() as it is not supported by Android NDK
-COPY /iperf-3.13-mt-beta3/iperf3-pthread.h /tmp/iperf-3.13-mt-beta3/src/pthread.h
-COPY /iperf-3.13-mt-beta3/iperf3-pthread.c /tmp/iperf-3.13-mt-beta3/src/
-RUN cd /tmp/iperf-3.13-mt-beta3 && \
-    sed 's/#include <pthread.h>/#include \"pthread.h\"/' src/iperf.h > src/tmp_iperf.h && \
-    cp src/tmp_iperf.h src/iperf.h
+#COPY /iperf-3.15-mt-beta1/iperf3-pthread.h /tmp/iperf-3.15-mt-beta1/src/pthread.h
+#COPY /iperf-3.15-mt-beta1/iperf3-pthread.c /tmp/iperf-3.15-mt-beta1/src/
+#RUN cd /tmp/iperf-3.15-mt-beta1 && \
+#    sed 's/#include <pthread.h>/#include \"pthread.h\"/' src/iperf.h > src/tmp_iperf.h && \
+#    cp src/tmp_iperf.h src/iperf.h
 
-RUN cd /tmp/iperf-3.13-mt-beta3 && \
-    ./configure
+#RUN cd /tmp/iperf-3.15-mt-beta1 && \
+#    ./configure
 
 ############
 # iPerf 3.14
@@ -80,14 +109,6 @@ RUN cd /tmp && \
 COPY /iperf-3.14/* /tmp/iperf-3.14/
 RUN cd /tmp/iperf-3.14 && \
     ./configure
-
-# Compile
-
-RUN ndk-build clean
-
-RUN ndk-build NDK_APPLICATION_MK=/tmp/jni/Application.mk
-
-RUN tree /tmp/libs
 
 ############
 # iPerf 3.15
