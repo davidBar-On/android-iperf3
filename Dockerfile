@@ -76,31 +76,9 @@ RUN mkdir -p /tmp/jni
 COPY /jni/Android.mk /tmp/jni
 COPY /jni/Application.mk /tmp/jni
 
-#####################
-# iPerf 3.15-mt-beta1
-#####################
-
-#RUN cd /tmp && \
-#    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.15-mt-beta1.tar.gz && \
-#    tar -zxvf iperf-3.15-mt-beta1.tar.gz && \
-#    rm -f iperf-3.15-mt-beta1.tar.gz
-
-#COPY /iperf-3.15-mt-beta1/* /tmp/iperf-3.15-mt-beta1/
-
-# Workaround for pthread_cancel() as it is not supported by Android NDK
-#COPY /iperf-3.15-mt-beta1/iperf3-pthread.h /tmp/iperf-3.15-mt-beta1/src/pthread.h
-#COPY /iperf-3.15-mt-beta1/iperf3-pthread.c /tmp/iperf-3.15-mt-beta1/src/
-#RUN cd /tmp/iperf-3.15-mt-beta1 && \
-#    sed 's/#include <pthread.h>/#include \"pthread.h\"/' src/iperf.h > src/tmp_iperf.h && \
-#    cp src/tmp_iperf.h src/iperf.h
-
-#RUN cd /tmp/iperf-3.15-mt-beta1 && \
-#    ./configure
-
 ############
 # iPerf 3.14
 ############
-
 RUN cd /tmp && \
     wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.14.tar.gz && \
     tar -zxvf iperf-3.14.tar.gz && \
@@ -113,7 +91,6 @@ RUN cd /tmp/iperf-3.14 && \
 ############
 # iPerf 3.15
 ############
-
 RUN cd /tmp && \
     wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.15.tar.gz && \
     tar -zxvf iperf-3.15.tar.gz && \
@@ -123,7 +100,31 @@ COPY /iperf-3.15/* /tmp/iperf-3.15/
 RUN cd /tmp/iperf-3.15 && \
     ./configure
 
+#####################
+# iPerf 3.16-beta1
+#####################
+
+RUN cd /tmp && \
+    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.16-beta1.tar.gz && \
+    tar -zxvf iperf-3.16-beta1.tar.gz && \
+    rm -f iperf-3.16-beta1.tar.gz
+
+COPY /iperf-3.16-beta1/* /tmp/iperf-3.16-beta1/
+
+# Workaround for pthread_cancel() as it is not supported by Android NDK
+COPY /src/iperf3-pthread.h /tmp/iperf-3.16-beta1/src/pthread.h
+COPY /src/iperf3-pthread.c /tmp/iperf-3.16-beta1/src/
+RUN cd /tmp/iperf-3.16-beta1 && \
+    sed 's/#include <pthread.h>/#include \"pthread.h\"/' src/iperf.h > src/tmp_iperf.h && \
+    cp src/tmp_iperf.h src/iperf.h
+
+RUN cd /tmp/iperf-3.16-beta1 && \
+    ./configure
+
+
+##############
 # Compile
+##############
 
 RUN ndk-build clean
 
