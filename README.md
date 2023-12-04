@@ -22,6 +22,7 @@ This repository is practically a copy of the [KnightWhoSayNi/android-iperf/](htt
 | `3.14`          | 2023-07-07 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.14.tar.gz)  |
 | `3.15`          | 2023-09-27 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.15.tar.gz)  |
 | `3.16-beta1`    | 2023-11-15 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.16-beta1.tar.gz)  |
+| `3.16`          | 2023-12-01 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.16.tar.gz)  |
 
 ### Download
 
