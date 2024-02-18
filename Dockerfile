@@ -76,50 +76,11 @@ RUN mkdir -p /tmp/jni
 COPY /jni/Android.mk /tmp/jni
 COPY /jni/Application.mk /tmp/jni
 
-############
+##### OLD ########
 # iPerf 3.14
-############
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.14.tar.gz && \
-    tar -zxvf iperf-3.14.tar.gz && \
-    rm -f iperf-3.14.tar.gz
-
-COPY /iperf-3.14/* /tmp/iperf-3.14/
-RUN cd /tmp/iperf-3.14 && \
-    ./configure
-
-############
 # iPerf 3.15
-############
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.15.tar.gz && \
-    tar -zxvf iperf-3.15.tar.gz && \
-    rm -f iperf-3.15.tar.gz
-
-COPY /iperf-3.15/* /tmp/iperf-3.15/
-RUN cd /tmp/iperf-3.15 && \
-    ./configure
-
-#####################
 # iPerf 3.16-beta1
-#####################
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.16-beta1.tar.gz && \
-    tar -zxvf iperf-3.16-beta1.tar.gz && \
-    rm -f iperf-3.16-beta1.tar.gz
-
-COPY /iperf-3.16-beta1/* /tmp/iperf-3.16-beta1/
-
-# Workaround for pthread_cancel() as it is not supported by Android NDK
-COPY /src/iperf3-pthread.h /tmp/iperf-3.16-beta1/src/pthread.h
-COPY /src/iperf3-pthread.c /tmp/iperf-3.16-beta1/src/
-RUN cd /tmp/iperf-3.16-beta1 && \
-    sed 's/#include <pthread.h>/#include \"pthread.h\"/' src/iperf.h > src/tmp_iperf.h && \
-    cp src/tmp_iperf.h src/iperf.h
-
-RUN cd /tmp/iperf-3.16-beta1 && \
-    ./configure
+##################
 
 #############
 # iPerf 3.16
@@ -142,6 +103,20 @@ RUN cd /tmp/iperf-3.16 && \
 RUN cd /tmp/iperf-3.16 && \
     ./configure
 
+
+############################################################################################
+# iPerf <preperation for iperf version with pthread_cancel() added )no need for tem changes)
+############################################################################################
+#
+#RUN cd /tmp && \
+#    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.<xx>.tar.gz && \
+#    tar -zxvf iperf-3.<xx>.tar.gz && \
+#    rm -f iperf-3.<xx>.tar.gz
+
+#COPY /iperf-3.<xx>/* /tmp/iperf-3.<xx>/
+
+#RUN cd /tmp/iperf-3.<xx> && \
+#    ./configure
 
 ##############
 # Compile
