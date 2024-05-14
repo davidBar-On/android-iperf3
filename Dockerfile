@@ -105,18 +105,20 @@ RUN cd /tmp/iperf-3.16 && \
 
 
 ############################################################################################
-# iPerf <preperation for iperf version with pthread_cancel() added )no need for tem changes)
+# iPerf 3.17.1
+# 
+# First version with no need for `sed` to include pthread_cancel().
 ############################################################################################
-#
-#RUN cd /tmp && \
-#    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.<xx>.tar.gz && \
-#    tar -zxvf iperf-3.<xx>.tar.gz && \
-#    rm -f iperf-3.<xx>.tar.gz
 
-#COPY /iperf-3.<xx>/* /tmp/iperf-3.<xx>/
+RUN cd /tmp && \
+    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.17.1.tar.gz && \
+    tar -zxvf iperf-3.17.1.tar.gz && \
+    rm -f iperf-3.17.1.tar.gz
 
-#RUN cd /tmp/iperf-3.<xx> && \
-#    ./configure
+COPY /iperf-3.17.1/* /tmp/iperf-3.17.1/
+
+RUN cd /tmp/iperf-3.17.1 && \
+    ./configure
 
 ##############
 # Compile
