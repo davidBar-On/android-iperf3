@@ -19,12 +19,12 @@ LOCAL_SRC_FILES := \
 		src/iperf_time.c \
 		src/iperf_udp.c \
 		src/iperf_util.c \
+		src/iperf_pthread.c \
 		src/main.c \
 		src/net.c \
 		src/tcp_info.c \
 		src/timer.c \
 		src/units.c \
-		src/iperf-pthread.c \
 
 LOCAL_DISABLE_FORMAT_STRING_CHECKS := true
 include $(BUILD_EXECUTABLE)
