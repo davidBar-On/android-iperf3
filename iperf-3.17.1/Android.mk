@@ -24,7 +24,7 @@ LOCAL_SRC_FILES := \
 		src/tcp_info.c \
 		src/timer.c \
 		src/units.c \
-		src/iperf3-pthread.c \
+		src/iperf-pthread.c \
 
 LOCAL_DISABLE_FORMAT_STRING_CHECKS := true
 include $(BUILD_EXECUTABLE)
