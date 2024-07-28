@@ -6,13 +6,11 @@ This repository is practically a copy of the [KnightWhoSayNi/android-iperf/](htt
 
 ## Getting Started
 
-> **What is iPerf3** ?
->
-> iPerf3 is a tool for active measurements of the maximum achievable bandwidth on IP networks. It supports tuning of various parameters related to timing, buffers and protocols (TCP, UDP, SCTP with IPv4 and IPv6). For each test it reports the bandwidth, loss, and other parameters. This is a new implementation that shares no code with the original iPerf and also is not backwards compatible.
->
-> [*https://iperf.fr/*](https://iperf.fr/)
+**What is iPerf3** ?
 
-**Remark** No `iperf3` source codes are included in this repo
+iPerf3 is a tool for active measurements of the maximum achievable bandwidth on IP networks. It supports tuning of various parameters related to timing, buffers and protocols (TCP, UDP, SCTP with IPv4 and IPv6). For each test it reports the bandwidth, loss, and other parameters.
+
+For more informatiion, see [https://github.com/esnet/iperf](https://github.com/esnet/iperf), which also includes the iperf3 source code (note that this repository does not include any iperf3 source code).
 
 ### Supported versions
 
