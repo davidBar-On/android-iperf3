@@ -22,6 +22,7 @@ For more informatiion, see [https://github.com/esnet/iperf](https://github.com/e
 | `3.16-beta1`    | 2023-11-15 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.16-beta1.tar.gz)  |
 | `3.16`          | 2023-12-01 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.16.tar.gz)  |
 | `3.17.1`        | 2024-05-13 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.17.1.tar.gz)  |
+| `3.18`          | 2024-05-13 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.18.tar.gz)  |
 
 ### Download
 
@@ -30,9 +31,9 @@ Compiled `iperf3` binaries using SDK `9477386_latest` and NDK `r22` for devices 
 | ABI        | Binaries           |
 | ------------- |:-------------:|
 | arm64-v8a     | [here](https://github.com/davidBar-On/android-iperf3/tree/gh-pages/libs/arm64-v8a) |
-| armeabi-v7a      | [here](https://github.com/davidBar-On/android-iperf3/tree/gh-pages/libs/armeabi-v7a)      |
-| x86 | [here](https://github.com/davidBar-On/android-iperf3/tree/gh-pages/libs/x86)     |
-| x86_64 | [here](https://github.com/davidBar-On/android-iperf3/tree/gh-pages/libs/x86_64)     |
+| armeabi-v7a   | [here](https://github.com/davidBar-On/android-iperf3/tree/gh-pages/libs/armeabi-v7a)      |
+| x86           | [here](https://github.com/davidBar-On/android-iperf3/tree/gh-pages/libs/x86)     |
+| x86_64        | [here](https://github.com/davidBar-On/android-iperf3/tree/gh-pages/libs/x86_64)     |
 
 More about *Application Binary Interface* (ABI): [https://developer.android.com/ndk/guides/abis](https://developer.android.com/ndk/guides/abis)
 
