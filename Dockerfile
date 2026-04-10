@@ -177,6 +177,20 @@ COPY /iperf-3.20/* /tmp/iperf-3.20/
 RUN cd /tmp/iperf-3.20 && \
     ./configure
 
+############################################################################################
+# iPerf 3.21
+############################################################################################
+
+RUN cd /tmp && \
+    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.21.tar.gz && \
+    tar -zxvf iperf-3.21.tar.gz && \
+    rm -f iperf-3.21.tar.gz
+
+COPY /iperf-3.21/* /tmp/iperf-3.21/
+
+RUN cd /tmp/iperf-3.21 && \
+    ./configure
+
 ##############
 # Compile
 ##############
