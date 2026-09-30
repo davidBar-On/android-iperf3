@@ -8,4 +8,5 @@
 #include /tmp/iperf-3.19/Android.mk
 #include /tmp/iperf-3.19.1/Android.mk
 #include /tmp/iperf-3.20/Android.mk
-include /tmp/iperf-3.21/Android.mk
+#include /tmp/iperf-3.21/Android.mk
+include /tmp/iperf-3.22/Android.mk
